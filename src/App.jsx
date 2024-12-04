@@ -1,15 +1,21 @@
 import { useState } from "react";
 
 function App() {
-  const articlesList = [
-    {
-      title: "Test Post",
-    },
-  ];
+  const [articlesList, setArticleList] = useState([]);
   const [newArticleTitle, setNewArticleTitle] = useState("");
 
   const handlePostSubmit = (e) => {
     e.preventDefault();
+
+    const newArticle = {
+      title: newArticleTitle,
+    };
+
+    const updatedArticlesList = [...articlesList, newArticle];
+
+    setArticleList(updatedArticlesList);
+
+    console.log(articlesList);
   };
 
   const handleNewTitle = (e) => {
@@ -39,7 +45,7 @@ function App() {
           <div>
             {articlesList.map((article) => {
               return (
-                <div>
+                <div key={article.title}>
                   <h4>{article.title}</h4>
                 </div>
               );
