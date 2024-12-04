@@ -23,8 +23,12 @@ function App() {
     setNewArticleTitle(e.target.value);
   };
 
-  const deletePost = (index) => {
-    alert(index);
+  const deletePost = (deleteIndex) => {
+    const newArticlesList = articlesList.filter(
+      (article, articleIndex) => articleIndex !== deleteIndex
+    );
+
+    setArticleList(newArticlesList);
   };
 
   return (
@@ -61,11 +65,11 @@ function App() {
         <section>
           <div className="container mb-3">
             <h3 className="mb-3">I tuoi post:</h3>
-            <div className="row-cols-4">
+            <div className="row gap-3">
               {articlesList.length ? (
                 articlesList.map((article, index) => {
                   return (
-                    <div className="card">
+                    <div className="card col-3">
                       <div key={index} className="card-body">
                         <button
                           onClick={() => deletePost(index)}
@@ -78,7 +82,7 @@ function App() {
                 })
               ) : (
                 <div>
-                  <h3>Nessun post creato</h3>
+                  <h6>Nessun post creato</h6>
                 </div>
               )}
             </div>
