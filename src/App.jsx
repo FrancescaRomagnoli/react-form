@@ -1,7 +1,11 @@
 import { useState } from "react";
 
 function App() {
-  // const articlesList = [];
+  const articlesList = [
+    {
+      title: "Test Post",
+    },
+  ];
   const [newArticleTitle, setNewArticleTitle] = useState("");
 
   const handlePostSubmit = (e) => {
@@ -32,7 +36,15 @@ function App() {
         </div>
         <div>
           <h3>I tuoi post:</h3>
-          <h4>Titolo del nuovo post</h4>
+          <div>
+            {articlesList.map((article) => {
+              return (
+                <div>
+                  <h4>{article.title}</h4>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </main>
     </>
